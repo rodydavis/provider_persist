@@ -6,6 +6,8 @@ A Flutter Template to show how to persist provider.
 
 Example of how to persist UI state with [Provider](https://pub.dev/packages/provider).
 
+![task-screen](https://github.com/AppleEducate/provider_persist/blob/master/screenshots/1.png)
+
 ## UI
 
 ``` dart
