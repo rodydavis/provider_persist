@@ -11,6 +11,18 @@ class TasksScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter Task Manager'),
+        actions: <Widget>[
+          Consumer<TaskProvider>(
+              builder: (context, model, child) => IconButton(
+                    icon: Icon(Icons.bug_report),
+                    onPressed: model.dummyData,
+                  )),
+          Consumer<TaskProvider>(
+              builder: (context, model, child) => IconButton(
+                    icon: Icon(Icons.clear_all),
+                    onPressed: model.clearAll,
+                  )),
+        ],
       ),
       body: Consumer<TaskProvider>(
         builder: (context, model, child) {

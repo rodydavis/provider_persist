@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:localstorage/localstorage.dart';
 
@@ -18,7 +21,7 @@ class TaskProvider extends ChangeNotifier {
 
     try {
       if (_data != null) {
-        _state = TaskState.fromJson(_data);
+        _state = await _fetchState(_data);
       }
     } catch (e) {
       print('Error Loading Task State: $e');
@@ -50,7 +53,35 @@ class TaskProvider extends ChangeNotifier {
     _saveState();
   }
 
+  void dummyData() async {
+    final _now = DateTime.now();
+    final _list = List.generate(
+        20000,
+        (index) => Task(
+              name: 'Task: $index',
+              dataCreated: _now,
+            ));
+    _state.tasks = _list;
+    notifyListeners();
+    _saveState();
+  }
+
+  void clearAll() {
+    _state.tasks.clear();
+    notifyListeners();
+    _saveState();
+  }
+
   void _saveState() async => await _storage.setItem(_stateKey, _state.toJson());
+}
+
+Future<TaskState> _fetchState(Map<String, dynamic> data) async {
+  final _data = json.encode(data);
+  return compute(_parseState, _data);
+}
+
+TaskState _parseState(String data) {
+  return TaskState.fromJson(json.decode(data));
 }
 
 @JsonSerializable(nullable: false, explicitToJson: true)
