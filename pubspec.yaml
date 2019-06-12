@@ -1,0 +1,21 @@
+name: provider_persist
+description: A Flutter Template to show how to persist provider.
+version: 1.0.0+1
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.2
+  provider: ^3.0.0+1
+  json_annotation: ^2.4.0
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  json_serializable: ^3.0.0
+  build_runner: ^1.5.2
+
+flutter:
+  uses-material-design: true
