@@ -24,12 +24,17 @@ class TasksScreen extends StatelessWidget {
               child: Text('No Tasks Found'),
             );
           }
-          return ListView.builder(
+          return ListView.separated(
+            separatorBuilder: (context, index) => Divider(),
             itemCount: model.tasks.length,
             itemBuilder: (context, index) {
               final _item = model.tasks[index];
               return ListTile(
                 title: Text(_item.name),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () => model.deleteTask(index),
+                ),
                 onTap: () => _editTask(context, _item, index),
               );
             },
@@ -62,7 +67,7 @@ class TasksScreen extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (_) => EditTaskScreen(task: task),
-          fullscreenDialog: true,
+          fullscreenDialog: false,
         ));
 
     if (_task != null) {

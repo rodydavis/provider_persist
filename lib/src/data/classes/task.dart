@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'task.g.dart';
@@ -7,7 +8,11 @@ class Task {
   final String name;
   final bool active;
   final DateTime dataCreated;
-  Task({this.name, this.active, this.dataCreated});
+  Task({
+    @required this.name,
+    @required this.dataCreated,
+    this.active: true,
+  });
 
   factory Task.fromJson(Map<String, dynamic> json) => _$TaskFromJson(json);
 

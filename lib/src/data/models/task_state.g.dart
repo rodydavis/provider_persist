@@ -14,4 +14,4 @@ TaskState _$TaskStateFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$TaskStateToJson(TaskState instance) =>
-    <String, dynamic>{'tasks': instance.tasks};
+    <String, dynamic>{'tasks': instance.tasks.map((e) => e.toJson()).toList()};

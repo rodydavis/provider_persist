@@ -9,8 +9,8 @@ part of 'task.dart';
 Task _$TaskFromJson(Map<String, dynamic> json) {
   return Task(
       name: json['name'] as String,
-      active: json['active'] as bool,
-      dataCreated: DateTime.parse(json['dataCreated'] as String));
+      dataCreated: DateTime.parse(json['dataCreated'] as String),
+      active: json['active'] as bool);
 }
 
 Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{

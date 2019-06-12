@@ -20,7 +20,7 @@ class TaskProvider extends ChangeNotifier {
 
     try {
       if (_data != null) {
-        _state = TaskState.fromJson(json.decode(_data));
+        _state = TaskState.fromJson(_data);
       }
     } catch (e) {
       print('Error Loading Task State: $e');
@@ -55,7 +55,7 @@ class TaskProvider extends ChangeNotifier {
   void _saveState() async => await _storage.setItem(_stateKey, _state.toJson());
 }
 
-@JsonSerializable(nullable: false)
+@JsonSerializable(nullable: false, explicitToJson: true)
 class TaskState {
   TaskState({this.tasks});
 
